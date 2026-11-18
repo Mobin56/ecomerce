@@ -1,0 +1,65 @@
+{
+  "name": "ecommerce-platform",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.11"
+  },
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run test:core && vitest run",
+    "test:watch": "vitest",
+    "test:core": "node --experimental-strip-types --no-warnings --test tests/core/*.test.ts",
+    "test:e2e": "playwright test",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
+    "db:push": "prisma db push",
+    "db:seed": "tsx --env-file=.env prisma/seed.ts",
+    "db:studio": "prisma studio",
+    "jobs:abandoned-carts": "tsx --env-file=.env scripts/abandoned-carts.ts",
+    "jobs:backup": "bash scripts/backup.sh",
+    "check": "npm run typecheck && npm run lint && npm run test"
+  },
+  "prisma": {
+    "seed": "tsx --env-file=.env prisma/seed.ts"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.700.0",
+    "@aws-sdk/s3-request-presigner": "^3.700.0",
+    "@prisma/client": "^6.16.0",
+    "bcryptjs": "^3.0.2",
+    "clsx": "^2.1.1",
+    "ioredis": "^5.6.1",
+    "lucide-react": "^0.511.0",
+    "next": "^15.5.0",
+    "otplib": "^12.0.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "recharts": "^2.15.3",
+    "server-only": "^0.0.1",
+    "tailwind-merge": "^3.3.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@playwright/test": "^1.53.0",
+    "@tailwindcss/postcss": "^4.1.8",
+    "@types/node": "^22.15.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "eslint": "^9.28.0",
+    "eslint-config-next": "^15.5.0",
+    "prisma": "^6.16.0",
+    "tailwindcss": "^4.1.8",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.2.0"
+  }
+}
